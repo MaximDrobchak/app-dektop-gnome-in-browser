@@ -1,68 +1,42 @@
 import React, { Component } from "react";
-import { Toolbar, ToolbarRow } from "@rmwc/toolbar";
-import IconButton from "@material-ui/core/IconButton";
-
-import PowerSettingsNew from "@material-ui/icons/PowerSettingsNewOutlined";
-import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
-import { withStyles } from "@material-ui/core/styles";
-import withRoot from "../withRoot";
 import PropTypes from "prop-types";
+import withRoot from "../withRoot";
+import AppNavBar from "./AppNavBar";
+import Grid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   root: {
-    background: "rgba(0, 0, 0, .44)",
-    maxHeigth: 20,
-    margin: 0,
-    padding: 0
-  },
-  buttons: {
-    position: "relative",
-    bottom: 5
-  },
-  iconsa: {
-    color: "#fafafa",
-    fontSize: 24,
-    margin: 0,
-    padding: 0,
-    width: 20,
-    heigth: 20
-  },
-  App: {
-    margin: 0,
-    padding: 0
+    width: "100%",
+    height: "100%",
+    margin: "0 auto",
+    padding: "0 auto",
+    backgroundImage: "linear-gradient(-45deg, #4504DA, #FF0353)"
   }
 });
 class App extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="App">
-        <Toolbar style={{ height: "30px" }} className={classes.root}>
-          <ToolbarRow>
-            <IconButton className={classes.buttons} size="mini">
-              <PowerSettingsNew className={classes.iconsa} />
-            </IconButton>
-            <IconButton className={classes.buttons} size="mini">
-              <ArrowDropDown className={classes.iconsa} />
-            </IconButton>
-          </ToolbarRow>
-        </Toolbar>
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </div>
+      <Grid container className={classes.root} spacing={0}>
+        <Grid item xs={12} className={classes.header}>
+          <AppNavBar />
+        </Grid>
+        <Grid item xs={12} className={classes.main}>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+        </Grid>
+      </Grid>
     );
   }
 }
-
 App.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
 export default withRoot(withStyles(styles)(App));

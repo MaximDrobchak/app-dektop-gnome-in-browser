@@ -1,37 +1,104 @@
 import React from "react";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
-import green from "@material-ui/core/colors/green";
-import CssBaseline from "@material-ui/core/CssBaseline";
 
-// A theme with custom primary and secondary color.
-// It's optional.
+import {
+  Toolbar,
+  CssBaseline,
+  AppBar,
+  Button,
+  Paper
+} from "@material-ui/core/";
+
+import { grey, pink, red } from "@material-ui/core/colors/";
+
+// import ButtonIcon from "@material-ui/core/ButtonIcon";
+
+export function OverridesCss() {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <Toolbar />
+      <AppBar />
+      <Button />
+      <Paper />
+    </MuiThemeProvider>
+  );
+}
+
 const theme = createMuiTheme({
   type: "dark",
   palette: {
-    primary: {
-      light: purple[300],
-      main: purple[500],
-      dark: purple[700]
+    primary: { main: grey[800] },
+    secondary: pink,
+    error: red,
+    tonalOffset: 0.2
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        color: "white",
+        margin: "0px 0px 0px 0px ",
+        padding: "0px 0px 0px 0px ",
+        height: 10,
+        width: 10
+      }
     },
-    secondary: {
-      light: green[300],
-      main: green[500],
-      dark: green[700]
+    MuiAppBar: {
+      root: {
+        disableRipple: true,
+        margin: "0px 0px 0px 0px ",
+        padding: "0px 0px 0px 0px ",
+        height: 20
+      }
     },
-    white: {
-      main: "#fafafa"
+    MuiBattonBase: {
+      root: {
+        disableRipple: true,
+        margin: "0px 0px 0px 0px ",
+        padding: "0px 0px 0px 0px ",
+        height: 10,
+        width: 10
+      }
+    },
+    // MuiIconBatton: {
+    //   root: {
+    //     disableRipple: true,
+    //     margin: "0px 0px 0px 0px ",
+    //     padding: "0px 0px 0px 0px ",
+    //     height: 10,
+    //     width: 10
+    //   }
+    // },
+
+    MuiToolbar: {
+      // root: {
+      //   disableRipple: true,
+      //   margin: "0px 0px 0px 0px ",
+      //   padding: "0px 0px 0px 0px ",
+      //   height: 10,
+      //   width: 10
+      // },
+      // regular: {
+      //   disableRipple: true,
+      //   margin: "0px 0px 0px 0px ",
+      //   padding: "0px 0px 0px 0px ",
+      //   height: 10,
+      //   width: 10
+      // },
+      // gutters: {
+      //   disableRipple: true,
+      //   margin: "0px 0px 0px 0px ",
+      //   padding: "0px 0px 0px 0px ",
+      //   height: 10,
+      //   width: 10
+      // }
     }
   }
 });
 
 function withRoot(Component) {
   function WithRoot(props) {
-    // MuiThemeProvider makes the theme available down the React tree
-    // thanks to React context.
     return (
       <MuiThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <Component {...props} />
       </MuiThemeProvider>
